@@ -37,7 +37,7 @@ function initHexes(){
 
 function hex(x,y,radius,stroke,fill){
     if (!stroke){ stroke = '#666'; }
-    if (!fill){ fill = '#CCC'; }
+    if (!fill){ fill = '#555'; }
     var degree = Math.PI / 180;
     var points = [0,60,120,180,240,300].map(function(angle){
         return [Math.cos(angle * degree) * radius + x, Math.sin(angle * degree) * radius + y];
