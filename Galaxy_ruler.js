@@ -1,7 +1,8 @@
 // fill the screen with grey hexes
 window.onresize = function(){
-	console.log(document.getElementById('canvas').width())
+	canvas.setAttribute('width', getWidth());
+    canvas.setAttribute('height', getHeight());
+    fillCanvas();
 }
 
-initHexes();
 fillCanvas();
