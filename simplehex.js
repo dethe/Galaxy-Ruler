@@ -1,4 +1,7 @@
 // Utilities to get window dimensions
+window.canvas = document.getElementById('canvas');
+window.ctx = canvas.getContext('2d');
+
 function getWidth(){
     var x = 0;
     if (self.innerHeight){
@@ -22,17 +25,6 @@ function getHeight(){
         y = document.body.clientHeight;
     }
     return y;
-}
-
-function initHexes(){
-//     var canvas = document.createElement('canvas');
-//     canvas.setAttribute('width', getWidth());
-//     canvas.setAttribute('height', getHeight());
-//     document.appendChild(canvas);
-    window.canvas = document.getElementById('canvas');
-    canvas.setAttribute('width', getWidth());
-    canvas.setAttribute('height', getHeight());
-    window.ctx = canvas.getContext('2d');
 }
 
 function hex(x,y,radius,stroke,fill){
