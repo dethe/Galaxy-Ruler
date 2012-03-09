@@ -1,6 +1,8 @@
 // Utilities to get window dimensions
 window.canvas = document.getElementById('canvas');
 window.ctx = canvas.getContext('2d');
+window.WIDTH = 0;
+window.HEIGHT = 0;
 
 function getWidth(){
     var x = 0;
@@ -12,6 +14,7 @@ function getWidth(){
     }else if (document.body){
         x = document.body.clientWidth;
     }
+    WIDTH = x;
     return x;
 }
 
@@ -24,6 +27,7 @@ function getHeight(){
     }else if (document.body){
         y = document.body.clientHeight;
     }
+    HEIGHT = y;
     return y;
 }
 
@@ -50,6 +54,8 @@ function fillCanvas(){
     var size = 50;
     var hcount = getWidth() / (size * 1.5);
     var vcount = getHeight() / (size * 1.8);
+    ctx.fillStyle = '#FFF';
+    ctx.fillRect(0,0,WIDTH,HEIGHT);
     for (var x = 0; x < hcount; x++){
         for (var y = 0; y < vcount; y++){
             if (x % 2){

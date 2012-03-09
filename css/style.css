@@ -3,3 +3,18 @@
 html, body{
 	margin:0;
 }
+
+#ship{
+	float: right;
+	width: 45px;
+	height: 45px;
+}
+
+.dialogs{
+	display: none;
+}
+
+#login{
+	width: 300px;
+	height: 300px;
+}
