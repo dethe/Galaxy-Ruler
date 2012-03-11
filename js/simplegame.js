@@ -19,23 +19,45 @@ function drawShip(ctx, x, y, color, rot){
 	ctx.lineTo(-20,-15);
 	ctx.closePath();
 	ctx.fill();
+	if (up_key_down){
+		ctx.beginPath();
+		ctx.fillStyle = '#F00';
+		ctx.moveTo(-5,0);
+		ctx.lineTo(-10,-3);
+		ctx.lineTo(-18,0);
+		ctx.lineTo(-10,3);
+		ctx.closePath();
+		ctx.fill();
+	}
 	ctx.restore();
 }
 
 function accelerate(){
-	momentumX += Math.cos(userShipRotation * degree);
-	momentumY -= Math.sin(userShipRotation * degree);
+	momentumX += Math.cos(userShipRotation * degree) * 0.25;
+	momentumY -= Math.sin(userShipRotation * degree) * 0.25;
 }
 
-var userShipColor = '#0F0';
-var userName = 'Somewhat Peeved Max';
-var userShipRotation = 0;
+// environment
+
 var dialog = null;
+var playing = false;
+var left_key_down = false;
+var right_key_down = false;
+var up_key_down = false;
+
+
+// ship
+
+var userShipColor = '#0F0';
+var userShipRotation = 0;
 var shipX = 0;
 var shipY = 0;
-var playing = false;
 var momentumX = 0;
 var momentumY = 0;
+
+// Player
+var userName = '';
+
 
 function login(){
 	// Not really logging in, just get a name and a colour for your ship
@@ -83,6 +105,9 @@ function update(){
 	if (shipY > HEIGHT) shipY -= HEIGHT;
 	if (shipY < 0) shipY += HEIGHT;
 	if (playing){
+		if (left_key_down) userShipRotation += 2;
+		if (right_key_down) userShipRotation -= 2;
+		if (up_key_down) accelerate();
 		drawShip(ctx, shipX, shipY, userShipColor, userShipRotation );
 	}
 	setTimeout(update, 30);
@@ -91,19 +116,32 @@ function update(){
 $(document.body)
 	.on('keydown', function(evt){
 		//console.log('Key: %s', evt.which);
-		if (dialog) return;
+		if (!playing) return;
 		switch(evt.which){
-			case 37: userShipRotation += 6; break; // LEFT ARROW
-			case 39: userShipRotation -= 6; break; // RIGHT ARROW
-			case 38: accelerate(); break;// UP arrow
+			case 37: // LEFT ARROW (fallthrough)
+			case 65: left_key_down = true; break; // A
+			case 39: // RIGHT ARROW (fallthrough)
+			case 68: right_key_down = true; break; // D
+			case 38: // UP arrow (fallthrough)
+			case 87: up_key_down = true; break; // W
 			case 40: // DOWN arrow
-			case 87: accelerate(); break;// W
 			case 83: // S
-			case 65: userShipRotation += 6; break; // A
-			case 68: userShipRotation -= 6; break; // D
 			case 32: // SPACE
 			case 16: // SHIFT
 			default: console.log('Key: %s', evt.which); return;
+		}
+		return false;
+	})
+	.on('keyup', function(evt){
+		if (!playing) return;
+		switch(evt.which){
+			case 37:
+			case 65: left_key_down = false; break;
+			case 39:
+			case 68: right_key_down = false; break;
+			case 38:
+			case 87: up_key_down = false; break;
+			default: return;
 		}
 		return false;
 	})
