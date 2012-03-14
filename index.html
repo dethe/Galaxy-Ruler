@@ -2,13 +2,26 @@
 <html lang="en">
 <head>
 		<title>Galaxy Ruler</title>
+        <link rel="stylesheet" href="css/ui.css" />
 		<link rel="stylesheet" href="css/style.css" />
+		<meta charset="utf-8" />
 </head>
 <body>
     <canvas id="canvas" width="1000" height="600"></canvas>
+    <div class="dialogs">
+	    <form id="login">
+		    <canvas id="ship" width="45" height="45"></canvas>
+	    	<p>
+		    	<label for="name_input">What is your name?</label>
+		    	<input id="name_input" name="name" value="Space Ace"/>
+		    </p>
+	    </form>
+	</div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="js/ui.js"></script>
 	<script src="js/socket.io.js"></script>
-	<script src="simplehex.js"></script>
+	<script src="js/simplehex.js"></script>
 	<script src="js/simplegame.js"></script>
-    <script src="Galaxy_ruler.js"></script>
+    <script src="js/Galaxy_ruler.js"></script>
 </body>
 </html>
