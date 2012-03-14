@@ -47,7 +47,7 @@ function hex(x,y,radius,stroke,fill){
 }
 
 function fillCanvas(){
-    var size = 50;
+    var size = 30;
     var hcount = getWidth() / (size * 1.5);
     var vcount = getHeight() / (size * 1.8);
     for (var x = 0; x < hcount; x++){

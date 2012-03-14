@@ -1,8 +1,9 @@
 // fill the screen with grey hexes
-window.onresize = function(){
+function draw_resize(){
 	canvas.setAttribute('width', getWidth());
     canvas.setAttribute('height', getHeight());
     fillCanvas();
 }
-
+draw_resize();
 fillCanvas();
+window.onresize = draw_resize;
